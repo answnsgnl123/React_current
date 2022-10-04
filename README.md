@@ -14,6 +14,12 @@
 
 
 
+# C && C++ /TCP
+- gcc 컴파일러 설치
+### gcc 컴파일러 설치
+- https://copycoding.tistory.com/285 
+- vscode install 
+
 ### 참고 링크
 - https://adoptium.net/ [JDK]버전 -version 17
 - 사진 버전이랑 다를수있지만 17버전인거는 확인바람
