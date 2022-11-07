@@ -1,22 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-import axios from "axios";
-import React, {useState, useEffect} from "react";
+// import logo from './logo.svg';
+
+// import Test from './component/Test'
+
+import React, {useEffect, useState} from 'react';
+import axios from 'axios';
 
 function App() {
+   const [hello, setHello] = useState('')
 
-  const [hello,sethello] = useState();
+    useEffect(() => {
+        axios.get('/api/hello')
+        .then(response => setHello(response.data))
+        .catch(error => console.log(error))
+    }, []);
 
-  useEffect = (() => {
-    axios.get('/api/hello')
-        .then(res => sethello(res.data)).catch(err => console.log(err))
-  })
-
-  return (
-    <div>
-        백앤드 데이터 {hello}
-    </div>
-  );
+    return (
+        <div>
+            백엔드에서 가져온 데이터입니다 : {hello}
+        </div>
+    );
 }
 
 export default App;
+
