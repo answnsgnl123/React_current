@@ -1,25 +1,32 @@
-// import logo from './logo.svg';
+import { useSelector } from 'react-redux';
 
-// import Test from './component/Test'
+import { ThemeProvider } from '@mui/material/styles';
+import { CssBaseline, StyledEngineProvider } from '@mui/material';
 
-import React, {useEffect, useState} from 'react';
-import axios from 'axios';
+// routing
+import Routes from 'routes';
 
-function App() {
-   const [hello, setHello] = useState('')
+// defaultTheme
+import themes from 'themes';
 
-    useEffect(() => {
-        axios.get('/api/hello')
-        .then(response => setHello(response.data))
-        .catch(error => console.log(error))
-    }, []);
+// project imports
+import NavigationScroll from 'layout/NavigationScroll';
+
+// ==============================|| APP ||============================== //
+
+const App = () => {
+    const customization = useSelector((state) => state.customization);
 
     return (
-        <div>
-            백엔드에서 가져온 데이터입니다 : {hello}
-        </div>
+        <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={themes(customization)}>
+                <CssBaseline />
+                <NavigationScroll>
+                    <Routes />
+                </NavigationScroll>
+            </ThemeProvider>
+        </StyledEngineProvider>
     );
-}
+};
 
 export default App;
-
