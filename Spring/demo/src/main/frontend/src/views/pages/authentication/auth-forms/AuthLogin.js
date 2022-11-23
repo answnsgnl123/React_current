@@ -34,6 +34,8 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import Google from 'assets/images/icons/social-google.svg';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
@@ -57,6 +59,15 @@ const FirebaseLogin = ({ ...others }) => {
         event.preventDefault();
     };
 
+    const handleSubmitLogin = (e) => {
+        e.preventDefault();
+        const data = new FormData(e.currentTarget);
+        console.log({
+            email: data.get('email'),
+            password: data.get('password')
+        });
+        axios.post('/api/login').then(res => console.log(res.data))
+    };
     return (
         <>
             <Grid container direction="column" justifyContent="center" spacing={2}>
@@ -144,8 +155,8 @@ const FirebaseLogin = ({ ...others }) => {
                     }
                 }}
             >
-                {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
-                    <form noValidate onSubmit={handleSubmit} {...others}>
+                {({ errors, handleBlur, handleChange, isSubmitting, touched, values }) => (
+                    <form noValidate onSubmit={handleSubmitLogin} {...others}>
                         <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
                             <InputLabel htmlFor="outlined-adornment-email-login">Email Address / Username</InputLabel>
                             <OutlinedInput
