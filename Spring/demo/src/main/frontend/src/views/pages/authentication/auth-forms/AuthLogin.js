@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
+
 import {
     Box,
     Button,
@@ -32,6 +33,7 @@ import AnimateButton from 'ui-component/extended/AnimateButton';
 // assets
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
 
 import Google from 'assets/images/icons/social-google.svg';
 import { useEffect } from 'react';
@@ -66,7 +68,10 @@ const FirebaseLogin = ({ ...others }) => {
             email: data.get('email'),
             password: data.get('password')
         });
-        axios.post('/api/login').then(res => console.log(res.data))
+        axios.post('/api/login',data).then(res => console.log(res.data))
+        // window.location.href = '/free'
+
+        
     };
     return (
         <>

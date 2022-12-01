@@ -1,14 +1,17 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.LoginForm;
-import org.springframework.stereotype.Controller;
+import com.example.demo.service.LoginSerivce;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@AllArgsConstructor
 public class LoginController {
+
+    private final LoginSerivce loginSerivce;
 
     @GetMapping("/api/login")
     public String newLoginForm(){
@@ -16,9 +19,9 @@ public class LoginController {
     }
 
     @PostMapping("/api/login")
-    public String createLoginForm(@RequestBody LoginForm form){
+    public String createLoginForm(LoginForm form){
         System.out.println(form.toString());
-        System.out.println(form.getEmail());
+        loginSerivce.findid_password(form.getEmail(),form.getPassword());
         return "";
     }
 }
