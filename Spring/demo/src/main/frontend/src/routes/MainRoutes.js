@@ -6,6 +6,9 @@ import Loadable from 'ui-component/Loadable';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
+const LoginDefault = Loadable(lazy(() => import('views/Login-page')))
+const RegisteredDefault = Loadable(lazy(() => import('views/Rgister-page')))
+const ChatDefault = Loadable(lazy(() => import('views/chat-page')))
 
 // utilities routing
 const UtilsTypography = Loadable(lazy(() => import('views/utilities/Typography')));
@@ -85,6 +88,19 @@ const MainRoutes = {
         {
             path: 'sample-page',
             element: <SamplePage />
+        },
+        {
+            path: 'auth/login',
+            element: <LoginDefault />
+
+        },
+        {
+            path: 'auth/registered',
+            element: <RegisteredDefault />
+        },
+        {
+            path: 'chat',
+            element: <ChatDefault/>
         },
         {
             path: '/table_test/test',
